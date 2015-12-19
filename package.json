@@ -1,0 +1,22 @@
+{
+  "name": "taskboard",
+  "version": "1.0.0",
+  "description": "Offline GitHub Issues",
+  "preferGlobal": true,
+  "bin": {
+    "taskboard": "index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/schultyy/taskboard.git"
+  },
+  "author": "Jan Schulte",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/schultyy/taskboard/issues"
+  },
+  "homepage": "https://github.com/schultyy/taskboard#readme"
+}
