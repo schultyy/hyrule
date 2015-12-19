@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 'use strict';
 var github = require('octonode');
+var PouchDB = require('pouchdb');
 
 function printHelp() {
 
@@ -10,8 +11,14 @@ function handleError(error) {
   console.log(error);
 }
 
-function saveToDatabase(issues) {
+function createDatabaseName(identifier) {
+  return identifier.split("/")[1];
+}
+
+function saveToDatabase(databaseName, issues) {
   console.log(issues);
+  var db = new PouchDB(databaseName);
+  issues.forEach(db.put);
 }
 
 var userArgs = process.argv.slice(2);
@@ -29,5 +36,5 @@ ghrepo.issues(function(err, issues) {
     return;
   }
 
-  saveToDatabase(issues);
+  saveToDatabase(createDatabaseName(repositoryName), issues);
 });
