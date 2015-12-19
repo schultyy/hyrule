@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/schultyy/taskboard/issues"
   },
-  "homepage": "https://github.com/schultyy/taskboard#readme"
+  "homepage": "https://github.com/schultyy/taskboard#readme",
+  "dependencies": {
+    "octonode": "^0.7.4"
+  }
 }
