@@ -2,6 +2,7 @@
 'use strict';
 var github = require('octonode');
 var db = require('./database_client');
+var ui = require('./ui');
 
 function printHelp() {
 
@@ -12,9 +13,7 @@ function handleError(error) {
 }
 
 function printDocuments(docs) {
-  docs.forEach(function(doc) {
-    console.log(doc);
-  });
+  ui.render(docs);
 }
 
 function fetchFromGitHub(repoId) {
@@ -41,11 +40,9 @@ if(!repositoryName) {
 var dbName = db.createDatabaseName(repositoryName);
 db.fetchDocuments(dbName).then(function(resultSet) {
   if (resultSet.total_rows > 0) {
-    console.log('documents from database');
     printDocuments(resultSet.rows);
     return Promise.resolve();
   } else {
-    console.log('documents from github');
     return fetchFromGitHub(repositoryName);
   }
 })

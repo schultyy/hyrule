@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/schultyy/taskboard#readme",
   "dependencies": {
+    "blessed": "^0.1.81",
     "octonode": "^0.7.4",
     "pouchdb": "^5.1.0",
     "uuidv4": "^0.3.1"
