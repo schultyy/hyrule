@@ -1,8 +1,7 @@
 #! /usr/bin/env node
 'use strict';
 var github = require('octonode');
-var PouchDB = require('pouchdb');
-var uuid = require('uuidv4');
+var db = require('./database_client');
 
 function printHelp() {
 
@@ -12,31 +11,9 @@ function handleError(error) {
   console.log(error);
 }
 
-function createDatabaseName(identifier) {
-  return identifier.split("/")[1];
-}
-
-function saveToDatabase(databaseName, issues) {
-  var db = new PouchDB(databaseName);
-  return Promise.all(issues.map(function(issue) {
-    var doc = Object.assign({'_id': uuid() }, issue);
-    return db.put(doc);
-  }))
-  .catch(function(err) {
-    console.log("ERR", err);
-  });
-}
-
 function printDocuments(docs) {
   docs.forEach(function(doc) {
     console.log(doc);
-  });
-}
-
-function fetchDocuments(databaseName) {
-  var db = new PouchDB(databaseName);
-  return db.allDocs({
-    include_docs: true
   });
 }
 
@@ -49,7 +26,7 @@ function fetchFromGitHub(repoId) {
       return;
     }
 
-    saveToDatabase(createDatabaseName(repositoryName), issues);
+    db.saveToDatabase(db.createDatabaseName(repositoryName), issues);
   });
 }
 
@@ -61,8 +38,8 @@ if(!repositoryName) {
   process.exit(1);
 }
 
-var dbName = createDatabaseName(repositoryName);
-fetchDocuments(dbName).then(function(resultSet) {
+var dbName = db.createDatabaseName(repositoryName);
+db.fetchDocuments(dbName).then(function(resultSet) {
   if (resultSet.total_rows > 0) {
     console.log('documents from database');
     printDocuments(resultSet.rows);
