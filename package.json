@@ -24,6 +24,7 @@
   "homepage": "https://github.com/schultyy/taskboard#readme",
   "dependencies": {
     "octonode": "^0.7.4",
-    "pouchdb": "^5.1.0"
+    "pouchdb": "^5.1.0",
+    "uuidv4": "^0.3.1"
   }
 }
