@@ -13,7 +13,9 @@ function handleError(error) {
 }
 
 function printDocuments(docs) {
-  ui.render(docs);
+  ui.render(docs.map(function(doc) {
+    return doc.doc;
+  }));
 }
 
 function fetchFromGitHub(repoId) {

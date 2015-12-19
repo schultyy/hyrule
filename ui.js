@@ -18,7 +18,7 @@ function renderTable(documents) {
     }
   });
   documents.forEach(function(d) {
-    list.pushItem(d.doc.title.toString());
+    list.pushItem(d.title.toString());
   });
   return list;
 }
