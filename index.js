@@ -19,15 +19,16 @@ function printDocuments(docs) {
 }
 
 function fetchFromGitHub(repoId) {
-  var client = github.client();
-  var ghrepo = client.repo(repoId);
-  ghrepo.issues(function(err, issues) {
-    if(err) {
-      handleError(err);
-      return;
-    }
-
-    db.saveToDatabase(db.createDatabaseName(repositoryName), issues);
+  return new Promise(function(fullfill, reject) {
+    var client = github.client();
+    var ghrepo = client.repo(repoId);
+    ghrepo.issues(function(err, issues) {
+      if(err) {
+        reject(err);
+      } else {
+        fullfill(issues);
+      }
+    });
   });
 }
 
@@ -50,7 +51,9 @@ function main() {
       printDocuments(resultSet.rows);
       return Promise.resolve();
     } else {
-      return fetchFromGitHub(repositoryName);
+      return fetchFromGitHub(repositoryName).then(function(issues) {
+        return db.saveToDatabase(dbName, issues);
+      });
     }
   })
   .catch(function(err) {
