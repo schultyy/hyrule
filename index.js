@@ -37,6 +37,16 @@ function prepareArgs() {
   return userArgs[0];
 }
 
+function initialFetch(repositoryName) {
+  var dbName = db.createDatabaseName(repositoryName);
+  return fetchFromGitHub(repositoryName).then(function(issues) {
+    return db.saveToDatabase(dbName, issues);
+  })
+  .then(function() {
+    return db.fetchDocuments(dbName);
+  });
+}
+
 function main() {
   let repositoryName = prepareArgs();
   if(!repositoryName) {
@@ -48,13 +58,13 @@ function main() {
   var dbName = db.createDatabaseName(repositoryName);
   db.fetchDocuments(dbName).then(function(resultSet) {
     if (resultSet.total_rows > 0) {
-      printDocuments(resultSet.rows);
-      return Promise.resolve();
+      return Promise.resolve(resultSet);
     } else {
-      return fetchFromGitHub(repositoryName).then(function(issues) {
-        return db.saveToDatabase(dbName, issues);
-      });
+      return initialFetch(repositoryName);
     }
+  })
+  .then(function(resultSet) {
+    printDocuments(resultSet.rows);
   })
   .catch(function(err) {
     console.log("ERR", err);
