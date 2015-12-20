@@ -31,23 +31,27 @@ function fetchFromGitHub(repoId) {
   });
 }
 
-var userArgs = process.argv.slice(2);
-var repositoryName = userArgs[0];
-if(!repositoryName) {
-  console.log("Repository name is missing");
-  printHelp();
-  process.exit(1);
+function main() {
+  var userArgs = process.argv.slice(2);
+  var repositoryName = userArgs[0];
+  if(!repositoryName) {
+    console.log("Repository name is missing");
+    printHelp();
+    process.exit(1);
+  }
+
+  var dbName = db.createDatabaseName(repositoryName);
+  db.fetchDocuments(dbName).then(function(resultSet) {
+    if (resultSet.total_rows > 0) {
+      printDocuments(resultSet.rows);
+      return Promise.resolve();
+    } else {
+      return fetchFromGitHub(repositoryName);
+    }
+  })
+  .catch(function(err) {
+    console.log("ERR", err);
+  });
 }
 
-var dbName = db.createDatabaseName(repositoryName);
-db.fetchDocuments(dbName).then(function(resultSet) {
-  if (resultSet.total_rows > 0) {
-    printDocuments(resultSet.rows);
-    return Promise.resolve();
-  } else {
-    return fetchFromGitHub(repositoryName);
-  }
-})
-.catch(function(err) {
-  console.log("ERR", err);
-});
+main();
