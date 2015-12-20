@@ -1,8 +1,8 @@
 #! /usr/bin/env node
 'use strict';
 var github = require('octonode');
-var db = require('./database_client');
-var ui = require('./ui');
+var db = require('./lib/database_client');
+var ui = require('./lib/ui');
 
 function printHelp() {
 
