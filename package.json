@@ -1,5 +1,5 @@
 {
-  "name": "taskboard",
+  "name": "hyrule",
   "version": "1.0.0",
   "description": "Offline GitHub Issues",
   "preferGlobal": true,
@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/schultyy/taskboard.git"
+    "url": "git+https://github.com/schultyy/hyrule.git"
   },
   "author": "Jan Schulte",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/schultyy/taskboard/issues"
+    "url": "https://github.com/schultyy/hyrule/issues"
   },
-  "homepage": "https://github.com/schultyy/taskboard#readme",
+  "homepage": "https://github.com/schultyy/hyrule#readme",
   "dependencies": {
     "blessed": "^0.1.81",
     "octonode": "^0.7.4",
