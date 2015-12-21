@@ -3,7 +3,7 @@
 var MainWindow = require('./lib/ui');
 
 function printHelp() {
-  console.log("Usage: taskboard <reponame>");
+  console.log("Usage: hyrule <reponame>");
   console.log("Where reponame follows the github handle/repository notation");
 }
 

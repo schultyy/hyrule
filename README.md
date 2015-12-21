@@ -1,12 +1,18 @@
-# Taskboard
+# hyrule
 
 View issues offline from a public GitHub repository.
 
 ## Requirements
 
-- Node 5.3
+- Node 4.2.x
 
 ## Installation
+
+```bash
+$ npm install -g hyrule
+```
+
+## Development
 
 1. Clone this repository
 
@@ -25,7 +31,7 @@ $ npm link
 Then you're able to start the app just by running
 
 ```bash
-$ taskboard
+$ hyrule
 ```
 
 in your terminal.
