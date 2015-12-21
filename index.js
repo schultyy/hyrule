@@ -3,6 +3,11 @@
 var github = require('octonode');
 var MainWindow = require('./lib/ui');
 
+function printHelp() {
+  console.log("Usage: taskboard <reponame>");
+  console.log("Where reponame follows the github handle/repository notation");
+}
+
 function prepareArgs() {
   var userArgs = process.argv.slice(2);
   return userArgs[0];
