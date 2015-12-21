@@ -1,6 +1,5 @@
 #! /usr/bin/env node
 'use strict';
-var github = require('octonode');
 var MainWindow = require('./lib/ui');
 
 function printHelp() {
