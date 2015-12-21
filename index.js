@@ -20,8 +20,8 @@ function main() {
     process.exit(1);
   }
   let ui = new MainWindow(repositoryName);
-  ui.initialize();
   ui.render();
+  ui.initialize();
 }
 
 main();
