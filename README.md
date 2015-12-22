@@ -32,7 +32,7 @@ $ hyrule schultyy/avm
 
 ## Development
 
-1. Clone this repository
+Clone this repository.
 
 Then run
 
@@ -40,16 +40,8 @@ Then run
 $ npm install
 ```
 
-After that finished, run
+to install all dependencies. To start the application run
 
 ```bash
-$ npm link
+$ npm start <username>/<repo>
 ```
-
-Then you're able to start the app just by running
-
-```bash
-$ hyrule
-```
-
-in your terminal.
