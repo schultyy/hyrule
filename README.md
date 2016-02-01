@@ -1,5 +1,7 @@
 # hyrule
 
+[![Build Status](https://travis-ci.org/schultyy/hyrule.svg?branch=master)](https://travis-ci.org/schultyy/hyrule)
+
 View issues offline from a public GitHub repository.
 
 ## About
