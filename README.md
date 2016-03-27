@@ -34,6 +34,8 @@ Then all the issues are downloaded and shown in the UI.
 $ hyrule schultyy/avm
 ```
 
+hyrule stores all issues in `$HOME/.hyrule`. 
+
 ## Development
 
 1. Clone this repository
